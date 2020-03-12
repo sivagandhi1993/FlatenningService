@@ -19,5 +19,6 @@ public class OfferResponse {
     String storeId;
     String terminal;
     String preCondition;
-    String id = "Dummy";
+    String id;
+    String idType;
 }

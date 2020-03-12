@@ -19,7 +19,7 @@ public class OfferRequest {
     String offerName;
     Integer offerLimit;
     //Reward need to be added.
-    List<String> conditions;
+    List<Condition> conditions;
     List<String> stores;
     List<String> terminals;
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
+import java.util.Map;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class OfferRequestModified {
     List<String> conditions;
     List<String> stores;
     List<String> terminals;
+    Map<String,List<String>> conditionsMap;
+
 }

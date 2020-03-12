@@ -6,9 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@Data
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(makeFinal = false , level = AccessLevel.PRIVATE)
 public class CustomerGroup {
+
+    List<String> customerGroups;
 
 }

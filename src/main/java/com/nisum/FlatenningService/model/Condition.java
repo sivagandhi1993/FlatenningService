@@ -14,6 +14,6 @@ import java.util.List;
 @FieldDefaults(makeFinal = false , level = AccessLevel.PRIVATE)
 public class Condition {
 
-    List<CustomerGroup> customerGroups;
-    List<ProductGroup> productGroups;
+    List<String> customerGroups;
+    List<String> productGroups;
 }
