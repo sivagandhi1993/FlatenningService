@@ -1,12 +1,10 @@
 package com.nisum.FlatenningService.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(makeFinal = false , level = AccessLevel.PRIVATE)

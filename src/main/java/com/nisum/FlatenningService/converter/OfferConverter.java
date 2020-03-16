@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static com.nisum.FlatenningService.util.CONSTANTS.*;
 
 @Component
 public class OfferConverter implements Function<OfferRequest, OfferRequestModified> {
@@ -23,27 +23,27 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
             Map<String, List<String>> map = new HashMap<>();
 
             if (Objects.nonNull(t.getAnd()) && Objects.nonNull(t.getAnd().getProductGroups())) {
-                map.put("ANDUPC", t.getAnd().getProductGroups());
+                map.put(ANDUPC, t.getAnd().getProductGroups());
             }
 
             if (Objects.nonNull(t.getOr()) && Objects.nonNull(t.getOr().getProductGroups())) {
-                map.put("ORUPC", t.getOr().getProductGroups());
+                map.put(ORUPC, t.getOr().getProductGroups());
             }
 
             if (Objects.nonNull(t.getNot()) && Objects.nonNull(t.getNot().getProductGroups())) {
-                map.put("NOTUPC", t.getNot().getProductGroups());
+                map.put(NOTUPC, t.getNot().getProductGroups());
             }
 
             if (Objects.nonNull(t.getAnd()) && Objects.nonNull(t.getAnd().getCustomerGroups())) {
-                map.put("ANDCUST", t.getAnd().getCustomerGroups());
+                map.put(ANDCUST, t.getAnd().getCustomerGroups());
             }
 
             if (Objects.nonNull(t.getOr()) && Objects.nonNull(t.getOr().getCustomerGroups())) {
-                map.put("ORCUST", t.getOr().getCustomerGroups());
+                map.put(ORCUST, t.getOr().getCustomerGroups());
             }
 
             if (Objects.nonNull(t.getNot()) && Objects.nonNull(t.getNot().getCustomerGroups())) {
-                map.put("NOTCUST", t.getNot().getCustomerGroups());
+                map.put(NOTCUST, t.getNot().getCustomerGroups());
             }
 
             offerRequestModified.setConditionsMap(map);
@@ -60,10 +60,5 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
         offerRequestModified.setStores(offerRequest.getStores());
         offerRequestModified.setTerminals(offerRequest.getTerminals());
         return offerRequestModified;
-    }
-
-
-    private static List<String> converter() {
-        return null;
     }
 }
