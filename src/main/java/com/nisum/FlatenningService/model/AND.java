@@ -1,5 +1,6 @@
 package com.nisum.FlatenningService.model;
 
+import com.google.common.collect.Lists;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +10,9 @@ import lombok.experimental.FieldDefaults;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(makeFinal = false , level = AccessLevel.PRIVATE)
-public class Condition {
-    AND and;
-    OR or;
-    NOT not;
+public class AND extends BaseConditionGroups{
+
+
+
 }

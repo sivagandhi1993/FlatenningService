@@ -28,16 +28,45 @@ public class OfferDao {
             offerResponse.setOfferId(staticOfferRequest.getOfferId());
             offerResponse.setOfferName(staticOfferRequest.getOfferName());
             offerResponse.setOfferType(staticOfferRequest.getOfferType());
-            offerResponse.setPreCondition(t.get(0).toString());
             offerResponse.setStoreId(t.get(1).toString());
             offerResponse.setTerminal(t.get(2).toString());
             offerResponse.setId(t.get(0).toString());
-            offerRequestModified.getConditionsMap().entrySet().stream().filter(s -> s.getValue().contains(t.get(0).toString())).forEach(g -> {
-                offerResponse.setIdType(g.getKey());
-            });
+
+            setPreConditionAndType(getKey(offerRequestModified.getConditionsMap(), t.get(0).toString()).findFirst().get(), offerResponse);
+
             offerResponses.add(offerResponse);
         });
         return offerResponses;
+    }
+
+    public <K, V> Stream<K> getKey(Map<K, List<V>> map, V value) {
+        return map.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().contains(value))
+                .map(Map.Entry::getKey);
+    }
+
+    private void setPreConditionAndType(String key, OfferResponse offerResponse) {
+        if (Objects.equals("ANDCUST", key)) {
+            offerResponse.setPreCondition("AND");
+            offerResponse.setIdType("CUSTOMER");
+        } else if (Objects.equals("ANDUPC", key)) {
+            offerResponse.setPreCondition("AND");
+            offerResponse.setIdType("UPC");
+        } else if (Objects.equals("ORCUST", key)) {
+            offerResponse.setPreCondition("OR");
+            offerResponse.setIdType("CUSTOMER");
+        } else if (Objects.equals("ORUPC", key)) {
+            offerResponse.setPreCondition("OR");
+            offerResponse.setIdType("UPC");
+        } else if (Objects.equals("NOTCUST", key)) {
+            offerResponse.setPreCondition("NOT");
+            offerResponse.setIdType("CUSTOMER");
+        } else if (Objects.equals("NOTUPC", key)) {
+            offerResponse.setPreCondition("NOT");
+            offerResponse.setIdType("UPC");
+        }
+
     }
 
     private Set<List<Object>> generateCombinations(HashSet<String> conditions, HashSet<String> stores, HashSet<String> terminals) {

@@ -1,5 +1,6 @@
 package com.nisum.FlatenningService.model;
 
+import com.google.common.collect.ListMultimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
