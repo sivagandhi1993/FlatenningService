@@ -3,7 +3,6 @@ package com.nisum.FlatenningService.service;
 import com.nisum.FlatenningService.converter.OfferConverter;
 import com.nisum.FlatenningService.dao.OfferDao;
 import com.nisum.FlatenningService.model.OfferRequest;
-import com.nisum.FlatenningService.model.OfferRequestModified;
 import com.nisum.FlatenningService.model.OfferResponse;
 import com.nisum.FlatenningService.model.StaticOfferRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,7 @@ public class OfferService {
         staticOfferRequest.setOfferName(offerRequest.getOfferName());
         staticOfferRequest.setOfferType(offerRequest.getOfferType());
 
-        return offerDao.getCombinations(offerConverter.apply(offerRequest),staticOfferRequest);
-
+        return offerDao.getCombinations(offerConverter.apply(offerRequest), staticOfferRequest);
     }
 
 
