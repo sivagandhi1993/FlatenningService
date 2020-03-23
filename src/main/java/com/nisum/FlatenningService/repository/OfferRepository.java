@@ -4,6 +4,6 @@ import com.nisum.FlatenningService.model.OfferResponse;
 import org.apache.ignite.springdata20.repository.IgniteRepository;
 import org.apache.ignite.springdata20.repository.config.RepositoryConfig;
 
-@RepositoryConfig(cacheName = "offerflatenning")
+@RepositoryConfig(cacheName = "public")
 public interface OfferRepository extends IgniteRepository<OfferResponse, Integer> {
 }

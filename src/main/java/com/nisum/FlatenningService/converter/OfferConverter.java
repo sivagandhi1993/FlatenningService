@@ -19,7 +19,7 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
 
         OfferRequestModified offerRequestModified = new OfferRequestModified();
         AtomicReference<List<String>> atomicReference = new AtomicReference<>();
-        offerRequest.getConditions().stream().forEach(t -> {
+        offerRequest.getConditions().forEach(t -> {
             Map<String, List<String>> map = new HashMap<>();
 
             if (Objects.nonNull(t.getAnd()) && Objects.nonNull(t.getAnd().getProductGroups())) {
@@ -50,7 +50,7 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
 
             List<String> flatenedConditions = Lists.newArrayList();
 
-            map.entrySet().stream().forEach(g -> {
+            map.entrySet().forEach(g -> {
                 flatenedConditions.addAll(g.getValue());
             });
 
