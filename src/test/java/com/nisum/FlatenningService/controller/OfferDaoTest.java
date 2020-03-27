@@ -3,9 +3,9 @@ package com.nisum.FlatenningService.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.nisum.FlatenningService.dao.OfferDao;
 import com.nisum.FlatenningService.model.*;
-import org.assertj.core.util.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 
-import static com.fasterxml.jackson.databind.deser.std.UntypedObjectDeserializer.Vanilla.std;
 import static com.nisum.FlatenningService.util.CONSTANTS.ANDCUST;
 import static com.nisum.FlatenningService.util.CONSTANTS.ANDUPC;
 
@@ -59,15 +58,15 @@ public class OfferDaoTest {
 
     private OfferRequestModified generateOfferModifiedRequest(OfferRequest offerRequest) {
         OfferRequestModified offerRequestModified = new OfferRequestModified();
-        List<String> terminals = Lists.newArrayList("1", "2", "3");
+        Set<String> terminals = Sets.newHashSet("1", "2", "3");
         offerRequestModified.setTerminals(terminals);
-        List<String> stores = Lists.newArrayList("0001", "0002");
+        Set<String> stores = Sets.newHashSet("0001", "0002");
         offerRequestModified.setStores(stores);
-        List<String> conditions = Lists.newArrayList("ANY", "GO", "1234", "3214");
+        Set<String> conditions = Sets.newHashSet("ANY", "GO", "1234", "3214");
         offerRequestModified.setConditions(conditions);
-        Map<String, List<String>> map = Maps.newHashMap();
-        map.put(ANDUPC, Lists.newArrayList("1234", "3214"));
-        map.put(ANDCUST, Lists.newArrayList("ANY", "GO"));
+        Map<String, Set<String>> map = Maps.newHashMap();
+        map.put(ANDUPC, Sets.newHashSet("1234", "3214"));
+        map.put(ANDCUST, Sets.newHashSet("ANY", "GO"));
         offerRequestModified.setConditionsMap(map);
         return offerRequestModified;
     }
@@ -79,13 +78,13 @@ public class OfferDaoTest {
         offerRequest.setOfferLimit(1);
         offerRequest.setOfferName("Buy these items an get item at 20 % off");
         offerRequest.setOfferType("1");
-        List<Condition> conditions = Lists.newArrayList();
+        Set<Condition> conditions = Sets.newHashSet();
         Condition condition = new Condition();
         AND and = new AND();
-        List<String> customerGroups = Lists.newArrayList();
+        Set<String> customerGroups = Sets.newHashSet();
         customerGroups.add("ANY");
         customerGroups.add("GO");
-        List<String> productGroups = Lists.newArrayList();
+        Set<String> productGroups = Sets.newHashSet();
         productGroups.add("1234");
         productGroups.add("3214");
         and.setCustomerGroups(customerGroups);
@@ -93,9 +92,9 @@ public class OfferDaoTest {
         condition.setAnd(and);
         conditions.add(condition);
         offerRequest.setConditions(conditions);
-        List<String> terminals = Lists.newArrayList("1", "2", "3");
+        Set<String> terminals =Sets.newHashSet("1", "2", "3");
         offerRequest.setTerminals(terminals);
-        List<String> stores = Lists.newArrayList("0001", "0002");
+        Set<String> stores = Sets.newHashSet("0001", "0002");
         offerRequest.setStores(stores);
         return offerRequest;
     }

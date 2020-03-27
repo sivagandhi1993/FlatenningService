@@ -17,10 +17,9 @@ public class OfferDao {
 
     public List<OfferResponse> getCombinations(OfferRequestModified offerRequestModified, StaticOfferRequest staticOfferRequest) {
 
-
-        Set<List<Object>> offerResponseObject = generateCombinations(Sets.newHashSet(offerRequestModified.getConditions())
-                , Sets.newHashSet(offerRequestModified.getStores())
-                , Sets.newHashSet(offerRequestModified.getTerminals()));
+        Set<List<Object>> offerResponseObject = generateCombinations(offerRequestModified.getConditions()
+                , offerRequestModified.getStores()
+                , offerRequestModified.getTerminals());
         List<OfferResponse> offerResponses = Lists.newArrayList();
 
         offerResponseObject.forEach(t -> {
@@ -46,7 +45,7 @@ public class OfferDao {
         return offerResponses;
     }
 
-    public <K, V> Stream<K> getKey(Map<K, List<V>> map, V value) {
+    public <K, V> Stream<K> getKey(Map<K, Set<V>> map, V value) {
         return map.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().contains(value))
@@ -54,29 +53,29 @@ public class OfferDao {
     }
 
     private void setPreConditionAndType(String key, OfferResponse offerResponse) {
-        //use switch case
-        if (Objects.equals(ANDCUST, key)) {
-            offerResponse.setPreCondition(AND);
-            offerResponse.setIdType(CUSTOMER);
-        } else if (Objects.equals(ANDUPC, key)) {
-            offerResponse.setPreCondition(AND);
-            offerResponse.setIdType(UPC);
-        } else if (Objects.equals(ORCUST, key)) {
-            offerResponse.setPreCondition(OR);
-            offerResponse.setIdType(CUSTOMER);
-        } else if (Objects.equals(ORUPC, key)) {
-            offerResponse.setPreCondition(OR);
-            offerResponse.setIdType(UPC);
-        } else if (Objects.equals(NOTCUST, key)) {
-            offerResponse.setPreCondition(NOT);
-            offerResponse.setIdType(CUSTOMER);
-        } else if (Objects.equals(NOTUPC, key)) {
-            offerResponse.setPreCondition(NOT);
-            offerResponse.setIdType(UPC);
+        switch (key) {
+            case ANDCUST:
+                offerResponse.setPreCondition(AND);
+                offerResponse.setIdType(CUSTOMER);
+            case ANDUPC:
+                offerResponse.setPreCondition(AND);
+                offerResponse.setIdType(UPC);
+            case ORCUST:
+                offerResponse.setPreCondition(OR);
+                offerResponse.setIdType(CUSTOMER);
+            case ORUPC:
+                offerResponse.setPreCondition(OR);
+                offerResponse.setIdType(UPC);
+            case NOTCUST:
+                offerResponse.setPreCondition(NOT);
+                offerResponse.setIdType(CUSTOMER);
+            case NOTUPC:
+                offerResponse.setPreCondition(NOT);
+                offerResponse.setIdType(UPC);
         }
     }
 
-    private Set<List<Object>> generateCombinations(HashSet<String> conditions, HashSet<String> stores, HashSet<String> terminals) {
+    private Set<List<Object>> generateCombinations(Set<String> conditions, Set<String> stores, Set<String> terminals) {
         return Sets.cartesianProduct(conditions, stores, terminals);
     }
 

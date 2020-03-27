@@ -27,7 +27,6 @@ public class OfferService {
         StaticOfferRequest staticOfferRequest = new StaticOfferRequest();
         staticOfferRequest.setOfferId(offerRequest.getOfferId());
         staticOfferRequest.setOfferLimit(offerRequest.getOfferLimit());
-        staticOfferRequest.setOfferName(offerRequest.getOfferName());
         staticOfferRequest.setOfferType(offerRequest.getOfferType());
 
         return offerDao.getCombinations(offerConverter.apply(offerRequest), staticOfferRequest);

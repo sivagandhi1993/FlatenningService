@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 @ToString
@@ -14,9 +15,9 @@ import java.util.Map;
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class OfferRequestModified {
 
-    List<String> conditions;
-    List<String> stores;
-    List<String> terminals;
-    Map<String,List<String>> conditionsMap;
+    Set<String> conditions;
+    Set<String> stores;
+    Set<String> terminals;
+    Map<String,Set<String>> conditionsMap;
 
 }

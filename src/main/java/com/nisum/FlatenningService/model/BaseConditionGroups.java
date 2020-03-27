@@ -3,8 +3,10 @@ package com.nisum.FlatenningService.model;
 import com.google.common.collect.Lists;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.assertj.core.util.Sets;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @ToString
@@ -12,6 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(makeFinal = false , level = AccessLevel.PRIVATE)
 public class BaseConditionGroups {
-    List<String> customerGroups = Lists.newArrayList();
-    List<String> productGroups = Lists.newArrayList();
+    Set<String> customerGroups = Sets.newHashSet();
+    Set<String> productGroups = Sets.newHashSet();
 }

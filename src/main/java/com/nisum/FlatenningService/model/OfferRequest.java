@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @ToString
@@ -14,10 +15,9 @@ public class OfferRequest {
 
     String offerId;
     String offerType;
-    String offerName;
     Integer offerLimit;
     //Reward need to be added.
-    List<Condition> conditions;
-    List<String> stores;
-    List<String> terminals;
+    Set<Condition> conditions;
+    Set<String> stores;
+    Set<String> terminals;
 }

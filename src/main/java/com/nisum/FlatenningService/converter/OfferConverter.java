@@ -3,6 +3,7 @@ package com.nisum.FlatenningService.converter;
 import com.google.common.collect.Lists;
 import com.nisum.FlatenningService.model.OfferRequest;
 import com.nisum.FlatenningService.model.OfferRequestModified;
+import org.assertj.core.util.Sets;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -18,9 +19,9 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
     public OfferRequestModified apply(OfferRequest offerRequest) {
 
         OfferRequestModified offerRequestModified = new OfferRequestModified();
-        AtomicReference<List<String>> atomicReference = new AtomicReference<>();
+        AtomicReference<Set<String>> atomicReference = new AtomicReference<>();
         offerRequest.getConditions().forEach(t -> {
-            Map<String, List<String>> map = new HashMap<>();
+            Map<String, Set<String>> map = new HashMap<>();
 
             if (Objects.nonNull(t.getAnd()) && Objects.nonNull(t.getAnd().getProductGroups())) {
                 map.put(ANDUPC, t.getAnd().getProductGroups());
@@ -48,7 +49,7 @@ public class OfferConverter implements Function<OfferRequest, OfferRequestModifi
 
             offerRequestModified.setConditionsMap(map);
 
-            List<String> flatenedConditions = Lists.newArrayList();
+            Set<String> flatenedConditions = Sets.newHashSet();;
 
             map.entrySet().forEach(g -> {
                 flatenedConditions.addAll(g.getValue());
