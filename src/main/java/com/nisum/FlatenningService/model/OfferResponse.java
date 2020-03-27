@@ -14,9 +14,9 @@ import java.util.List;
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 //Why there is no annotation here like entity..
 public class OfferResponse {
-//    What is the use of QuerySqlField here..
+    //    What is the use of QuerySqlField here..
 //    We need to look into association..
-    @QuerySqlField
+    @QuerySqlField(notNull = true)
     @NotNull
     String offerId;
     @QuerySqlField
@@ -34,5 +34,4 @@ public class OfferResponse {
     @QuerySqlField
     String idType;
 
-    String testMe;
 }

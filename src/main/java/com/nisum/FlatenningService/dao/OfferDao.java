@@ -26,7 +26,7 @@ public class OfferDao {
         offerResponseObject.forEach(t -> {
             OfferResponse offerResponse = new OfferResponse();
             offerResponse.setOfferId(staticOfferRequest.getOfferId());
-            offerResponse.setOfferName(staticOfferRequest.getOfferName());
+            //offerResponse.setOfferName(staticOfferRequest.getOfferName());
             offerResponse.setOfferType(staticOfferRequest.getOfferType());
             if (Objects.nonNull(t.get(0))) {
                 offerResponse.setId(t.get(0).toString());
@@ -54,6 +54,7 @@ public class OfferDao {
     }
 
     private void setPreConditionAndType(String key, OfferResponse offerResponse) {
+        //use switch case
         if (Objects.equals(ANDCUST, key)) {
             offerResponse.setPreCondition(AND);
             offerResponse.setIdType(CUSTOMER);

@@ -10,15 +10,13 @@ import org.apache.ignite.IgniteAtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @Slf4j
@@ -48,9 +46,17 @@ public class OfferController {
     }
 
     @GetMapping("/getAllCombinationsFromIgnite")
-public List<OfferResponse> getAllCombinationsFromIgnite() {
-    List<OfferResponse> allOfferResponseCombinations = newArrayList();
-    offerRepository.findAll().forEach(allOfferResponseCombinations::add);
-    return allOfferResponseCombinations;
-}
+    public List<OfferResponse> getAllCombinationsFromIgnite() {
+        List<OfferResponse> allOfferResponseCombinations = newArrayList();
+        offerRepository.findAll().forEach(allOfferResponseCombinations::add);
+        return allOfferResponseCombinations;
+    }
+
+
+   /* @PutMapping("/updateCombination")
+    public List<OfferResponse> updateCombinationsFromIgnite(@RequestBody Long offerID) {
+        List<OfferResponse> list = offerRepository.getById(offerID).stream().filter(t -> t.getTerminal().equals("3")).collect(toList());
+        list.forEach(t -> t.setPreCondition("OR"));
+        return list;
+    }*/
 }

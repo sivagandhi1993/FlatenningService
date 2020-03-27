@@ -24,8 +24,8 @@ public class IgniteConfig {
     @Bean
     public Ignite igniteInstance() {
         IgniteConfiguration config = new IgniteConfiguration();
-        //TODO : Find out the difference between offerflatenning_ch mentioned here and in repository...
-        CacheConfiguration cache = new CacheConfiguration("public");
+        config.setSqlSchemas("customschema");
+        CacheConfiguration cache = new CacheConfiguration("customschema");
         cache.setIndexedTypes(Integer.class, OfferResponse.class);
         config.setCacheConfiguration(cache);
         // Ignite persistence configuration.
@@ -36,6 +36,7 @@ public class IgniteConfig {
         storageCfg.setDefaultDataRegionConfiguration(dataRegionConfiguration);
         // Applying settings.
         config.setDataStorageConfiguration(storageCfg);
+        // This will start own cluster( how to avoid this)
         Ignite ignite = Ignition.start(config);
         ignite.cluster().active(true);
         return ignite;
