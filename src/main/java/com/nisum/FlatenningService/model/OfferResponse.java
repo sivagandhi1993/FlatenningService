@@ -22,8 +22,6 @@ public class OfferResponse {
     @QuerySqlField
     String offerType;
     @QuerySqlField
-    String offerName;
-    @QuerySqlField
     String storeId;
     @QuerySqlField
     String terminal;

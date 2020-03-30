@@ -1,4 +1,4 @@
-package com.nisum.FlatenningService.dao;
+package com.nisum.FlatenningService.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import static com.nisum.FlatenningService.util.CONSTANTS.*;
 
 @Component
-public class OfferDao {
+public class OfferServiceMain {
 
     public List<OfferResponse> getCombinations(OfferRequestModified offerRequestModified, StaticOfferRequest staticOfferRequest) {
 

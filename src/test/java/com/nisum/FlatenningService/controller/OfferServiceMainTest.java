@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.nisum.FlatenningService.dao.OfferDao;
 import com.nisum.FlatenningService.model.*;
+import com.nisum.FlatenningService.service.OfferServiceMain;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,11 +21,11 @@ import static com.nisum.FlatenningService.util.CONSTANTS.ANDCUST;
 import static com.nisum.FlatenningService.util.CONSTANTS.ANDUPC;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {OfferDao.class})
-public class OfferDaoTest {
+@ContextConfiguration(classes = {OfferServiceMain.class})
+public class OfferServiceMainTest {
 
     @Autowired
-    private OfferDao offerDao;
+    private OfferServiceMain offerServiceMain;
 
     @Test
     public void Test_getOfferResponse() {
@@ -34,7 +34,7 @@ public class OfferDaoTest {
         /*Mockito.when(offerConverter.apply(offerRequest)).thenReturn(generateOfferModifiedRequest(offerRequest));
         //        Mockito.when(offerDao.getCombinations(generateOfferModifiedRequest(offerRequest),staticOfferRequest()));*/
         //        //data combination testing
-        List<OfferResponse> offerResponses = offerDao.getCombinations(offerRequestModified, staticOfferRequest());
+        List<OfferResponse> offerResponses = offerServiceMain.getCombinations(offerRequestModified, staticOfferRequest());
         ObjectMapper mapper = new ObjectMapper();
         //Converting the Object to JSONString
         try {
@@ -76,7 +76,7 @@ public class OfferDaoTest {
         OfferRequest offerRequest = new OfferRequest();
         offerRequest.setOfferId("1234567");
         offerRequest.setOfferLimit(1);
-        offerRequest.setOfferName("Buy these items an get item at 20 % off");
+        //offerRequest.setOfferName("Buy these items an get item at 20 % off");
         offerRequest.setOfferType("1");
         Set<Condition> conditions = Sets.newHashSet();
         Condition condition = new Condition();

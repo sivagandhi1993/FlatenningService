@@ -1,7 +1,6 @@
 package com.nisum.FlatenningService.service;
 
 import com.nisum.FlatenningService.converter.OfferConverter;
-import com.nisum.FlatenningService.dao.OfferDao;
 import com.nisum.FlatenningService.model.OfferRequest;
 import com.nisum.FlatenningService.model.OfferResponse;
 import com.nisum.FlatenningService.model.StaticOfferRequest;
@@ -18,7 +17,7 @@ public class OfferService {
     private Logger logger = LoggerFactory.getLogger(OfferService.class);
 
     @Autowired
-    private OfferDao offerDao;
+    private OfferServiceMain offerServiceMain;
 
     @Autowired
     private OfferConverter offerConverter;
@@ -29,7 +28,7 @@ public class OfferService {
         staticOfferRequest.setOfferLimit(offerRequest.getOfferLimit());
         staticOfferRequest.setOfferType(offerRequest.getOfferType());
 
-        return offerDao.getCombinations(offerConverter.apply(offerRequest), staticOfferRequest);
+        return offerServiceMain.getCombinations(offerConverter.apply(offerRequest), staticOfferRequest);
     }
 
 
